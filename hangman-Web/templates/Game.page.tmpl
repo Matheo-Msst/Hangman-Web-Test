@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//static/Hangman.css" rel="stylesheet">
+    <title>Jeu du Hangman</title>
+</head>
+<body>
+    <h1 class="top-text">Hangman-Web</h1>
+    <h2 class="top-text">Jeu du Hangman</h2>
+    <br><br>
+
+    <div class="jeu">
+        <p>Mot complet : {{ .Mot }} </p>
+        <p>Mot incomplet : {{ .MotCacher }} </p>
+        <p>Mot incomplet : {{ .MotCacherString }} </p>
+        <p>Nombre de vies restantes : {{ .Vies }}</p>
+
+        <!-- Affichage du bonhomme -->
+        <p>Bonhomme : {{.DisplayHangman}}</p>
+
+        <!-- Formulaire pour soumettre une lettre ou un mot -->
+        <form action="/game" method="post">
+            <input type="text" name="input-user" maxlength="35" placeholder="Entrez une lettre ou un mot" required />
+
+            <button type="submit">Soumettre</button>
+        </form>
+
+        {{ if .PartieTerminee }}
+            <p>La partie est terminée !</p>
+        {{ end }}
+    </div>
+
+    <div class="listes">
+        <div class="liste-lettres">
+            <h2>Lettres saisies :</h2>
+            <ul>
+                {{ if .LettresTentees }}
+                    {{ range .LettresTentees }}
+                        <li>{{ . }}</li>
+                    {{ end }}
+                {{ else }}
+                    <li>Aucune lettre saisie</li>
+                {{ end }}
+            </ul>
+        </div>
+
+        <div class="liste-mots">
+            <h2>Mots saisis :</h2>
+            <ul>
+                {{ if .MotsTentes }}
+                    {{ range .MotsTentes }}
+                        <li>{{ . }}</li>
+                    {{ end }}
+                {{ else }}
+                    <li>Aucun mot saisi</li>
+                {{ end }}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
