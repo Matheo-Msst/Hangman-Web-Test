@@ -2,97 +2,68 @@ package fonctions
 
 // EtatsBonhomme contient les différentes étapes du pendu sous forme de tableau de chaînes
 var EtatsBonhomme = []string{
-	// 10 vies (aucun élément)
 	`
 
-
-
-
-
-
-
 `,
-	// 9 vies (sol uniquement)
 	`
 
-
-
-
-
-
-===========
-`,
-	// 8 vies (base de la potence)
+===========`,
 	`
 
-|          
-|          
-|          
-|          
-|          
-===========
-`,
-	// 7 vies (potence vide)
+|
+|
+|
+|
+|
+===========`,
 	`
-=========  
-|          
-|          
-|          
-|          
-|          
-===========
-`,
-	// 6 vies (juste la potence)
+=========
+|
+|
+|
+|
+|
+===========`,
 	`
-=========  
-|/         
-|          
-|          
-|          
-|          
-===========
-`,
-	// 5 vies
+=========
+|/
+|
+|
+|
+|
+===========`,
 	`
-=========  
-|/  |      
-|          
-|          
-|          
-|          
-===========
-`,
-	// 4 vies
+=========
+|/  |
+|
+|
+|
+|
+===========`,
 	`
 =========
 |/  |
 |   O
-|   
-|   
 |
-===========
-`,
-	// 3 vies
+|
+|
+===========`,
 	`
 =========
 |/  |
 |   O
 |   |
-|   
 |
-===========
-`,
-	// 2 vies
+|
+===========`,
 	`
 =========
 |/  |
 |   O
 |  /|
-|   
 |
-===========
-`,
-	// 1 vie
+|
+===========`,
 	`
 =========
 |/  |
@@ -100,9 +71,7 @@ var EtatsBonhomme = []string{
 |  /|\
 |  /
 |
-===========
-`,
-	// 0 vies (le pendu complet)
+===========`,
 	`
 =========
 |/  |
@@ -110,8 +79,7 @@ var EtatsBonhomme = []string{
 |  /|\
 |  / \
 |
-===========
-`,
+===========`,
 }
 
 // Fonction qui renvoie l'état du pendu selon les vies restantes

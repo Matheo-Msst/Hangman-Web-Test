@@ -8,6 +8,5 @@ Rajout du Bonhomme et triage de l'entrée utilisateur du terminal faite ,
 ```
 ## A faire :
 ```
-Il faut séparer les fonctions dans un package dédier ,
-Faudra aussi changer les variables dans /Hangman-Web/variables.go pour qu'elles correspondent bien ,
+TraiterChaine a modifier pour la version web (desolidariser le traiter chaine du demanderlettre) .
 ```

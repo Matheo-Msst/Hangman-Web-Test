@@ -2,7 +2,7 @@ package fonctions
 
 import "strings"
 
-// Générer les tirets pour le mot caché
+// Fonction pour générer les tirets pour le mot caché
 func GenererTirets(mot string) []string {
 	motCache := make([]string, len(mot))
 	for i := range motCache {
@@ -11,7 +11,7 @@ func GenererTirets(mot string) []string {
 	return motCache
 }
 
-// MettreAJourMotCache prend un tableau de string et renvoie une version string
+// Fonction pour mettre à jour le mot caché
 func MettreAJourMotCache(motCache []string) []string {
 	// Utilise strings.Join pour assembler les éléments du tableau en une seule chaîne
 	motCacheString := strings.Join(motCache, " ")

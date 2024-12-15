@@ -1,31 +1,27 @@
 package fonctions
 
-import (
-	"fmt"
-	"unicode"
-)
+import "strings"
 
-// Vérifie si le caractère est une lettre valide (A-Z ou a-z)
+// Fonction pour vérifier si la chaîne est une lettre valide (A-Z)
 func EstRuneValide(r rune) bool {
 	if (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') {
 		return true
 	}
-	// Vérifie si le caractère est un chiffre (0-9), retourne false dans ce cas
-	if (r >= '0' && r <= '9') || (r == 'à' || r == 'ù' || r == 'ç' || r == '_' || r == '-' || r == 'é') {
-		return false
-	}
 	return false
 }
 
-// Traite la chaîne en acceptant uniquement les lettres de A à Z
-func TraiterChaine(input string, vies int, motCache []string) string {
-	var resultat []rune
-	for _, r := range input {
-		if !EstRuneValide(r) {
-			fmt.Println("⛔ Veuillez saisir uniquement des lettres de A à Z (pas d'accents, chiffres ou symboles).")
-			return DemanderLettre() // Demande une nouvelle entrée
-		}
-		resultat = append(resultat, unicode.ToLower(r))
+// Fonction qui traite l'entrée utilisateur et retourne un booléen indiquant si l'entrée est valide
+func TraiterChaine(input string) (string, bool) {
+	// Vérification si l'entrée est valide
+	if !EstRuneValide(rune(input[0])) {
+		// Entrée invalide
+		return "", false
 	}
-	return string(resultat)
+	// Sinon, retourner l'entrée convertie en minuscule et valider
+	return strings.ToLower(input), true
+}
+
+// Fonction pour convertir l'entrée en minuscules si valide
+func Minuscule(input string) string {
+	return strings.ToLower(input)
 }

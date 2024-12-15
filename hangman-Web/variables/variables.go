@@ -15,15 +15,12 @@ type EtatJeu struct {
 	EtatPendu      string
 }
 
-// Une carte pour conserver l'état du jeu de chaque joueur
 var Etatjeu *EtatJeu
 
 // Initialiser une nouvelle partie
 func NouvellePartie() *EtatJeu {
 	mot := fonctions.ObtenirMotAleatoire()
-	// Initialiser MotCache
 	motCache := fonctions.GenererTirets(mot)
-	// Joindre les tirets avec un espace pour MotCacherStr
 	motCacherStr := strings.Join(motCache, " ")
 
 	return &EtatJeu{
@@ -32,7 +29,7 @@ func NouvellePartie() *EtatJeu {
 		MotCache:       motCache,
 		Vies:           10,
 		EtatPendu:      fonctions.RenvoieBonhomme(10),
-		LettresTentees: []string{}, // Liste vide pour les lettres tentées
-		MotsTentés:     []string{}, // Liste vide pour les mots tentés
+		LettresTentees: []string{},
+		MotsTentés:     []string{},
 	}
 }

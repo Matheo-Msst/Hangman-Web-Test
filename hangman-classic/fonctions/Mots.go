@@ -8,6 +8,12 @@ import (
 	"time"
 )
 
+// Liste globale des mots
+var Mots []string
+
+// Chemin vers le fichier de mots
+const filePath = "hangman-classic/txt/words.txt"
+
 // Obtenir un mot aléatoire à partir du fichier
 func ObtenirMotAleatoire() string {
 	f, err := os.Open(filePath)
@@ -18,8 +24,8 @@ func ObtenirMotAleatoire() string {
 
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
-		mot := TraiterChaine(scanner.Text(), 10, []string{}) // On ne veut pas afficher d'état ici
-		if mot != "" {
+		mot, valide := TraiterChaine(scanner.Text())
+		if valide {
 			Mots = append(Mots, mot)
 		}
 	}

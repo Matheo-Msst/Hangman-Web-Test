@@ -3,7 +3,6 @@ package requetes
 import (
 	"HangmanWeb/hangman-Web/variables"
 	"HangmanWeb/hangman-classic/fonctions"
-
 	"net/http"
 	"strings"
 )
@@ -24,37 +23,35 @@ func JeuHandler(w http.ResponseWriter, r *http.Request) {
 	if variables.Etatjeu == nil {
 		variables.Etatjeu = variables.NouvellePartie()
 	}
-
 	if r.Method == http.MethodPost {
 		// Demander de saisir une lettre ou un mot
 		Input := r.FormValue("input")
-
 		// Vérifier si la lettre ou le mot a déjà été tenté
 		if fonctions.Doublons(variables.Etatjeu.LettresTentees, Input) || fonctions.Doublons(variables.Etatjeu.MotsTentés, Input) {
-			// Si c'est un doublon, renvoyer l'état actuel
 			AfficherTemplate(w, "Jeu", variables.Etatjeu)
 			return
 		}
-
 		// Traiter l'entrée (lettre ou mot)
-		utilisateur := fonctions.TraiterChaine(Input, variables.Etatjeu.Vies, variables.Etatjeu.MotCache)
-
+		utilisateur, valide := fonctions.TraiterChaine(Input)
+		if !valide {
+			// Si l'entrée n'est pas valide
+			AfficherTemplate(w, "Jeu", variables.Etatjeu)
+			return
+		}
 		if len(utilisateur) > 1 {
 			// Si l'utilisateur a entré un mot
-			fonctions.VerifierMot(variables.Etatjeu.Mot, variables.Etatjeu.MotCache, Input, &variables.Etatjeu.Vies)
-			variables.Etatjeu.MotsTentés = append(variables.Etatjeu.MotsTentés, Input)
+			fonctions.VerifierMot(variables.Etatjeu.Mot, variables.Etatjeu.MotCache, utilisateur, &variables.Etatjeu.Vies)
+			variables.Etatjeu.MotsTentés = append(variables.Etatjeu.MotsTentés, utilisateur)
 		} else {
 			// Si l'utilisateur a entré une lettre
-			fonctions.VerifierUneLettre(variables.Etatjeu.Mot, variables.Etatjeu.MotCache, Input, &variables.Etatjeu.Vies)
-			variables.Etatjeu.LettresTentees = append(variables.Etatjeu.LettresTentees, Input)
+			fonctions.VerifierUneLettre(variables.Etatjeu.Mot, variables.Etatjeu.MotCache, utilisateur, &variables.Etatjeu.Vies)
+			variables.Etatjeu.LettresTentees = append(variables.Etatjeu.LettresTentees, utilisateur)
 		}
-
 		// Mettre à jour les infos
 		variables.Etatjeu.EtatPendu = fonctions.RenvoieBonhomme(variables.Etatjeu.Vies)
 		variables.Etatjeu.MotCache = fonctions.MettreAJourMotCache(variables.Etatjeu.MotCache)
 		variables.Etatjeu.MotCacherStr = strings.Join(variables.Etatjeu.MotCache, " ")
 	}
-
 	// Vérification de la fin de la partie
 	if variables.Etatjeu.Vies <= 0 {
 		// Redirige vers la page GameOver

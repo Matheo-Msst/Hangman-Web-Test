@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// (666 = perdu, 777 = gagné, 0 = continue)
+// Fonction pour vérifier si la partie est terminée
 func PartieTerminee(mot string, motCache []string, vies int) int {
 	if vies <= 0 {
 		fmt.Printf("\n💀 Vous avez perdu ! Le mot était : %s\n", mot)

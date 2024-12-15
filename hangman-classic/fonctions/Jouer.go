@@ -5,16 +5,6 @@ import (
 	"strings"
 )
 
-// Liste globale des mots
-var Mots []string
-
-// Chemin vers le txt
-const filePath = "hangman-classic/txt/words.txt"
-
-// Liste des lettres et mots déjà tentés
-var lettresTentees []string
-var motsTentes []string
-
 // Fonction principale qui orchestre toutes les étapes du jeu
 func Jouer() {
 	vies := 10
@@ -31,20 +21,30 @@ func Jouer() {
 		fmt.Println("Mots déjà tentés :", strings.Join(motsTentes, ", "))
 
 		// Demander une lettre ou un mot (en passant vies et motCache)
-		utilisateur := DemanderLettre()
+		utilisateur := DemanderLettre(vies, motCache)
 
-		// La fonction "TraiterChaine" redemande l'entrée si elle n'est pas correcte
-		utilisateur = TraiterChaine(utilisateur, vies, motCache)
+		// Traiter la chaîne de l'utilisateur
+		utilisateur, valide := TraiterChaine(utilisateur)
 
-		// Si l'entrée est valide, on vérifie la lettre ou le mot
+		// Si l'entrée est invalide, redemander l'entrée
+		if !valide {
+			fmt.Println("⛔ Veuillez entrer une lettre valide (A-Z, pas de symboles, pas de chiffres).")
+			continue
+		}
+
+		// Convertir l'entrée en minuscules
+		utilisateur = Minuscule(utilisateur)
+
+		// Si l'utilisateur entre un mot complet
 		if len(utilisateur) > 1 {
 			VerifierMot(mot, motCache, utilisateur, &vies)
 		} else {
+			// Si l'utilisateur entre une lettre
 			VerifierUneLettre(mot, motCache, utilisateur, &vies)
 		}
 
 		// Mise à jour et affichage du mot caché à chaque tour
-		MettreAJourMotCache(motCache) // Afficher le mot caché mis à jour
+		MettreAJourMotCache(motCache)
 
 		// Vérification de l'état de la partie
 		resultat := PartieTerminee(mot, motCache, vies)

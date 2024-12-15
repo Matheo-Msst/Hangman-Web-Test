@@ -9,7 +9,7 @@ body {
     padding: 0;
     height: 100vh; /* 100% de la hauteur de la fenêtre du navigateur */
     color: white;
-    font-family: URW Chancery L, cursive;
+    font-family: Georgia, serif;
 
     /* Centrage avec Flexbox */
     display: flex;
@@ -72,15 +72,15 @@ html, body {
     width: 500px;
     height: 50px;
 }
-/* Pour les messages liés à l'histoire */
 .MotsImportants {
-    font-size: xx-large;
+    font-size: x-large;
     color: red;
 }
 .MotsImportants2 {
     font-size: x-large;
     color: white;
 }
+
 /*FIN DU CSS COMMUN ENTRE L'ACCUEIL , LA DEFAITE , ET LA VICTOIRE */
 /*--------------------------------------------------------------------------------------------------------------*/
 /* PAGE D'ACCUEIL */
@@ -119,7 +119,7 @@ html, body {
 /* CSS COMMUN ENTRE VICTOIRE , DEFAITE , ET JEU */
 
 .InformationsImportantes {
-    font-size: xx-large;
+    font-size: x-large;
     color: white;
 }
 
@@ -173,7 +173,7 @@ html, body {
 }
 /* INFORMATIONS IMPORTANTES */
 .InformationsImportantes2 {
-    font-size: x-large;
+    font-size: large;
     color: white;
 }
 /* Affichage du pendu */
@@ -218,7 +218,7 @@ input[type="text"] {
 }
 /* Liste des lettres et mots */
 .ListeUl {
-    font-size: x-large;
+    font-size: medium;
 }
 .listes {
     display: flex;
