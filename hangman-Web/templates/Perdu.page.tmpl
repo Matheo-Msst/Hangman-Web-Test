@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Defaite</title>
+    <link rel="stylesheet" href="/static/Hangman.css">
+</head>
+<body>
+    <div class="Pages"> <!--classe pour la page-->
+
+        <div class="HautDePage">
+            <h1 class="TitreH">Perdu !</h1>
+            <p class="InformationsImportantes"> 
+                Le mot à deviner était : {{.Mot}}<br>
+                Nombre de Vies restantes : {{.Vies}} 💀<br>
+            </p>
+            <p class="MotsImportants">
+                "Malheureusement vous n'avez pas réussi !"<br>
+                "Le condamné a donc été pendu !"<br>
+            </p>
+        </div>
+
+        <div class="images-Defaite">
+            <!--L'image est le "background" de la div dans le css-->
+        </div>
+
+        <p class="InformationsImportantes"> 
+            Jeu réalisé par le groupe : MAUSSANT Mathéo et COCHET Gabriel
+        </p>
+
+        <div class="bouton-page">
+            <form action="/relancer" method="POST">
+                <button class ="boutonPage" type="submit">Retour à l'accueil</button>
+            </form>
+        </div>
+    </div>
+</body>

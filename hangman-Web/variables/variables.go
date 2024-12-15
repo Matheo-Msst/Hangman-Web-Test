@@ -2,43 +2,37 @@ package variables
 
 import (
 	"HangmanWeb/hangman-classic/fonctions"
-	"log"
+	"strings"
 )
 
-// GameState représente l'état actuel d'une partie du jeu
-type GameState struct {
-	Mot             string
-	MotCacher       []string
-	MotCacherString string
-	Vies            int
-	LettresTentees  []string
-	MotsTentes      []string
-	PartieTerminee  int
-	DisplayHangman  string
+type EtatJeu struct {
+	Mot            string
+	MotCacherStr   string
+	MotCache       []string
+	Vies           int
+	LettresTentees []string
+	MotsTentés     []string
+	EtatPendu      string
 }
 
-func InitialiserGameState(vies int) GameState {
+// Une carte pour conserver l'état du jeu de chaque joueur
+var Etatjeu *EtatJeu
+
+// Initialiser une nouvelle partie
+func NouvellePartie() *EtatJeu {
 	mot := fonctions.ObtenirMotAleatoire()
-	if mot == "" {
-		log.Fatal("Erreur: le mot obtenu est vide !")
-	}
-
+	// Initialiser MotCache
 	motCache := fonctions.GenererTirets(mot)
-	if len(motCache) == 0 {
-		log.Fatal("Erreur: le mot caché est vide !")
-	}
+	// Joindre les tirets avec un espace pour MotCacherStr
+	motCacherStr := strings.Join(motCache, " ")
 
-	moCacheString := fonctions.MettreAJourMotCache(motCache)
-	displayHangman := fonctions.RenvoieBonhomme(vies)
-
-	return GameState{
-		Mot:             mot,
-		MotCacher:       motCache,
-		MotCacherString: moCacheString,
-		Vies:            vies,
-		LettresTentees:  []string{},
-		MotsTentes:      []string{},
-		PartieTerminee:  0,
-		DisplayHangman:  displayHangman,
+	return &EtatJeu{
+		Mot:            mot,
+		MotCacherStr:   motCacherStr,
+		MotCache:       motCache,
+		Vies:           10,
+		EtatPendu:      fonctions.RenvoieBonhomme(10),
+		LettresTentees: []string{}, // Liste vide pour les lettres tentées
+		MotsTentés:     []string{}, // Liste vide pour les mots tentés
 	}
 }

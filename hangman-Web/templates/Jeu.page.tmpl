@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Jeu Hangman</title>
+    <link rel="stylesheet" href="/static/Hangman.css">
+</head>
+<body>
+    <div class="blocks">
+
+        <!-- Div pour la présentation du projet (gauche) -->
+        <div class="Regles">
+            <h2 class="Titre">Règles du jeu</h2>
+            <p class="InformationsImportantes2">
+                Le jeu choisit un mot.<br>
+                Le joueur doit choisir une lettre ou un mot.<br>
+                Si la lettre est dans le mot choisi par le jeu, alors elle s'affiche. Sinon, les vies baissent.<br><br>
+                Pour gagner, il faut :<br>
+                Soit trouver le mot lettre par lettre,<br>
+                Soit entrer directement le bon mot entièrement.<br><br>
+                La défaite survient lorsque les vies sont à 0.<br>
+                Les vies baissent :<br>
+                Quand la lettre entrée est fausse,<br>
+                Ou quand le mot entré est faux.<br>
+                Attention, si le mot est incorrect, <br>
+                les vies baissent du nombre de lettres dans le mot.<br><br>
+                Les caractères spéciaux, chiffres et accents <br>
+                sont invalides et ne comptent pas.
+        </div>
+
+        <div class="jeu">
+            <h1 class="Titre">Jeu du Pendu</h1>
+            <p class="InformationsImportantes2">
+                Mot à deviner : {{.MotCacherStr}}<br><br>
+                ❤️ Vies restantes : {{.Vies}}
+            </p>
+            <div class="affichage-pendu">
+                <p class="InformationsImportantes2">
+                    Etat du pendu : 
+                </p>
+                <div class="pendu">
+                        {{.EtatPendu}}
+                </div>
+            </div>
+            <div class="BasJeu">
+                <form method="POST" action="/jeu">
+                    <input type="text" name="input" placeholder="Entrez une lettre ou un mot" required>
+                    <button type="submit">Soumettre</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Liste des lettres et des mots (droite) -->
+        <div class="listes">
+            <div class="liste-lettres">
+                <h1 class="Titre">Liste des lettres saisies :</h1>
+                <ul class="ListeUl">
+                    {{ if .LettresTentees }}
+                        {{ range .LettresTentees }}
+                            <li>{{ . }}</li>
+                        {{ end }}
+                    {{ else }}
+                        <li>Aucune lettre saisie</li>
+                    {{ end }}
+                </ul>
+            </div>
+
+            <div class="liste-mots">
+                <h1 class="Titre">Liste des mots saisis :</h1>
+                <ul class="ListeUl">
+                    {{ if .MotsTentés }}
+                        {{ range .MotsTentés }}
+                            <li>{{ . }}</li>
+                        {{ end }}
+                    {{ else }}
+                        <li>Aucun mot saisi</li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
