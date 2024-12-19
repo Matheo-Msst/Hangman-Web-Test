@@ -176,6 +176,10 @@ html, body {
     font-size: large;
     color: white;
 }
+.InformationsImportantes3 {
+    font-size: x-large;
+    color: white;
+}
 /* Affichage du pendu */
 .affichage-pendu {
     width: auto;

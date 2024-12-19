@@ -18,7 +18,7 @@ func TraiterChaine(input string) (string, bool) {
 		return "", false
 	}
 	// Sinon, retourner l'entrée convertie en minuscule et valider
-	return strings.ToLower(input), true
+	return Minuscule(input), true
 }
 
 // Fonction pour convertir l'entrée en minuscules si valide

@@ -4,10 +4,22 @@ package fonctions
 var EtatsBonhomme = []string{
 	`
 
+
+
+
+
+
+
 `,
 	`
 
-===========`,
+
+
+
+
+
+===========
+`,
 	`
 
 |
@@ -15,7 +27,8 @@ var EtatsBonhomme = []string{
 |
 |
 |
-===========`,
+===========
+`,
 	`
 =========
 |
@@ -23,7 +36,8 @@ var EtatsBonhomme = []string{
 |
 |
 |
-===========`,
+===========
+`,
 	`
 =========
 |/
@@ -31,7 +45,8 @@ var EtatsBonhomme = []string{
 |
 |
 |
-===========`,
+===========
+`,
 	`
 =========
 |/  |
@@ -39,7 +54,8 @@ var EtatsBonhomme = []string{
 |
 |
 |
-===========`,
+===========
+`,
 	`
 =========
 |/  |
@@ -47,7 +63,8 @@ var EtatsBonhomme = []string{
 |
 |
 |
-===========`,
+===========
+`,
 	`
 =========
 |/  |
@@ -55,7 +72,8 @@ var EtatsBonhomme = []string{
 |   |
 |
 |
-===========`,
+===========
+`,
 	`
 =========
 |/  |
@@ -63,7 +81,8 @@ var EtatsBonhomme = []string{
 |  /|
 |
 |
-===========`,
+===========
+`,
 	`
 =========
 |/  |
@@ -71,7 +90,8 @@ var EtatsBonhomme = []string{
 |  /|\
 |  /
 |
-===========`,
+===========
+`,
 	`
 =========
 |/  |
@@ -79,7 +99,8 @@ var EtatsBonhomme = []string{
 |  /|\
 |  / \
 |
-===========`,
+===========
+`,
 }
 
 // Fonction qui renvoie l'état du pendu selon les vies restantes
